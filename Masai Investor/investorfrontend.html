@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor FrontEnd</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(4,auto);
+            gap: 20px;
+        }
+        p+img{
+            height: 50x;
+            width: 50%;
+        }
+        #navbar{
+            display: flex;
+            justify-content: space-around;
+            background-color: rgb(55, 55, 114);
+            color: white;
+            font-size: 32px;
+            padding: 12px;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        #investorForm{
+            margin-top: 24px;
+        }
+        h1{
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="investorfrontend.html">FrontEnd</a></div>
+        <div><a href="index.html">BackEnd</a></div>
+    </div>
+
+    <h1>FrontEnd</h1>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    var investorArr = JSON.parse(localStorage.getItem("investorData"))
+
+    investorArr.forEach(function(elem){
+       var box = document.createElement("div");
+
+       var investor_avatar = document.createElement("img");
+       investor_avatar.setAttribute("src",elem.investorImg);
+
+       var investor_name = document.createElement("h3");
+       investor_name.innerText=elem.investorName;
+
+       var investor_role = document.createElement("p");
+       investor_role.innerText = elem.investorRole;
+
+       var investor_company = document.createElement("img");
+       investor_company.setAttribute("src",elem.investorCompanyLogo);
+
+       box.append(investor_avatar,investor_name,investor_role,investor_company)
+
+       document.querySelector("#container").append(box);
+
+    })
+</script>
