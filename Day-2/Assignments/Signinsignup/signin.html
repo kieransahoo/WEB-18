@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+<body>
+    <form id="signindata">
+        <h3>Sign In</h3>
+        <p>Email ID</p>
+        <input type="text" placeholder="Enter Email Id">
+        <p>Password</p>
+        <input type="password" placeholder="Enter Password">
+        <input type="submit">
+    </form>
+</body>
+</html>
+<script>
+    document.querySelector("#form").addEventListener("Submit",loginFun) 
+
+    var userData = JSON.parse(localStorage.getItem("userData"))
+
+    
+
+    function loginFun(event){
+        event.preventDefault();
+        var data = {
+        email : signindata.email.value,
+        password : signindata.password.value
+        }
+
+        if(userData == null){
+            alert("Please Create an account")
+        } else if((userData.userEmail == data.email) && (userData.userPassword == data.password)){
+            alert("sign in Successful");
+
+            localStorage.setItem("signin",JSON.stringify(userData))
+        }
+        else{
+            alert("User doesn't exist")
+        }
+    }
+</script>
